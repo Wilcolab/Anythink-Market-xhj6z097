@@ -30,7 +30,7 @@ async def get_optional_user(authorization: Optional[str] = Header(None)):
         return None
     
     return None
-
+@limiter.limit('10/minute')
 @router.post("/secure-query", response_model=QueryResponse)
 async def secure_query(
     request: QueryRequest,
